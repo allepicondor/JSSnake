@@ -18,7 +18,7 @@ class Food{
             }
             for (let cord of this.snake.body_cords){
                 if (this.pos.equals(cord)){
-                    good = true;
+                    good = false;
                     break
                 }
             }

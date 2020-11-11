@@ -2,6 +2,7 @@ class Leaderboard{
     constructor(ip){
         this.leaderboard = null;
         this.ip = ip
+        this.oReq = new XMLHttpRequest();
     }
     draw(){
         if (OUTCOME != undefined){
@@ -32,26 +33,24 @@ class Leaderboard{
         OUTCOME = JSON.parse(this.response)
     }
 
-    request(path){    
-        console.log(this.ip+path)
-        var oReq = new XMLHttpRequest();
+    request(path){
+        //console.log(this.ip+path)
         //oReq.responseType = 'json';
-        oReq.addEventListener("load",this.grabData)
-        oReq.open("GET", this.ip+path,false);
-        oReq.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-        oReq.send();
+        this.oReq.addEventListener("load",this.grabData)
+        this.oReq.open("GET", this.ip+path,true);
+        this.oReq.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+        this.oReq.send();
     }
     send(username,score,path){
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", this.ip+path, true);
+        this.oReq.open("POST", this.ip+path, true);
         //Send the proper header information along with the request
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        this.oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-        xhr.onreadystatechange = function() { // Call a function when the state changes.
+        this.oReq.onreadystatechange = function() { // Call a function when the state changes.
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                 // Request finished. Do processing here.
             }
         }
-        xhr.send(JSON.stringify({ "username":username,"score": score}));
+        this.oReq.send(JSON.stringify({ "username":username,"score": score}));
     }
 }

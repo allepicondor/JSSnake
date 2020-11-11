@@ -10,16 +10,20 @@ class VanillaSnake{
     }
     keyInput(keyCode){
         if (keyCode == LEFT_ARROW || keyCode == 65){
-            this.snake.vel = new p5.Vector(-1,0)
+            if (!this.snake.vel.equals(new p5.Vector(1,0)))
+                this.snake.vel = new p5.Vector(-1,0)
         }
         if (keyCode == UP_ARROW || keyCode == 87){
-            this.snake.vel = new p5.Vector(0,-1)
+            if (!this.snake.vel.equals(new p5.Vector(0,1)))
+                this.snake.vel = new p5.Vector(0,-1)
         }
         if (keyCode == RIGHT_ARROW || keyCode == 68){
-            this.snake.vel = new p5.Vector(1,0)
+            if (!this.snake.vel.equals(new p5.Vector(-1,0)))
+                this.snake.vel = new p5.Vector(1,0)
         }
         if (keyCode == DOWN_ARROW || keyCode == 83){
-            this.snake.vel = new p5.Vector(0,1)
+            if (!this.snake.vel.equals(new p5.Vector(0,-1)))
+                this.snake.vel = new p5.Vector(0,1)
         }
         if (keyCode == 32){
             if (this.GameOver){
