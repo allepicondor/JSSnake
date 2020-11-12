@@ -5,6 +5,7 @@ var USERNAME_FIELD;
 var submitButton;
 const scale = 1
 function setup() {
+  console.log("v1.0")
   createCanvas(550*scale, 402*scale);
   game = new VanillaSnake([400*scale,400*scale],10*scale);
   USERNAME_FIELD = createInput("Username")
