@@ -4,8 +4,10 @@ class Player{
         this.head_cord = new p5.Vector(2,2)
         this.body_cords = [new p5.Vector(2,3)];
         this.vel = new p5.Vector(0,1);
+        this.nextvel = new p5.Vector(0,1);
     }
     move(){
+        this.vel = this.nextvel
         this.body_cords.splice(0, 0, new p5.Vector(this.head_cord.x,this.head_cord.y));
         this.body_cords.pop();
         this.head_cord.add(this.vel);
